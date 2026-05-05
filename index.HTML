@@ -1,0 +1,496 @@
+
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Liverpool Hope University: Inspired by Hope, Grounded in Excellence. Explore our premium undergraduate and postgraduate programs.">
+    <title>Liverpool Hope University | Academic Excellence</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Lucide Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+
+    <style>
+        /* Foundry Monoline Simulation & Typography */
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap');
+        
+        :root {
+            --lhu-red: #E30613;
+            --lhu-navy: #232437;
+            --lhu-pearl: #FDFDFD;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif; /* Fallback for Foundry Monoline UI aesthetic */
+            background-color: var(--lhu-pearl);
+            color: var(--lhu-navy);
+            overflow-x: hidden;
+        }
+
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(35, 36, 55, 0.05);
+        }
+
+        .hero-parallax {
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+        }
+
+        .card-hover {
+            transition: all 0.5s cubic-bezier(0.2, 1, 0.3, 1);
+        }
+        .card-hover:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(35, 36, 55, 0.08);
+        }
+
+        .masonry-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-auto-rows: 10px;
+        }
+
+        .animate-reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
+        }
+        .reveal-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Custom Red Accent */
+        .bg-lhu-red { background-color: var(--lhu-red); }
+        .text-lhu-red { color: var(--lhu-red); }
+        .border-lhu-red { border-color: var(--lhu-red); }
+        .bg-lhu-navy { background-color: var(--lhu-navy); }
+        .text-lhu-navy { color: var(--lhu-navy); }
+
+        .slider-overlay {
+            background: linear-gradient(to right, rgba(35, 36, 55, 0.8) 0%, rgba(35, 36, 55, 0.2) 100%);
+        }
+
+        /* 12-Column Layout Utilities */
+        .grid-12 {
+            display: grid;
+            grid-template-columns: repeat(12, minmax(0, 1fr));
+            gap: 1.5rem;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full z-50 glass-nav h-20 transition-all duration-300" id="navbar">
+        <div class="max-w-7xl mx-auto px-6 h-full flex items-center justify-between">
+            <div class="flex items-center gap-8">
+                <img src="https://www.hope.ac.uk/media/styleassets/images/hope_logo_100h.png" alt="LHU Logo" class="h-10">
+                <div class="hidden lg:flex space-x-8 text-sm font-semibold tracking-widest uppercase">
+                    <a href="#" class="hover:text-lhu-red transition-colors">Study</a>
+                    <a href="#" class="hover:text-lhu-red transition-colors">Research</a>
+                    <a href="#" class="hover:text-lhu-red transition-colors">Life at Hope</a>
+                    <a href="#" class="hover:text-lhu-red transition-colors">About</a>
+                </div>
+            </div>
+            <div class="flex items-center gap-6">
+                <button class="p-2 hover:text-lhu-red"><i data-lucide="search" class="w-5 h-5"></i></button>
+                <a href="#" class="bg-lhu-red text-white px-6 py-2.5 rounded-full text-xs font-bold uppercase tracking-tighter hover:bg-opacity-90 transition-all">Apply</a>
+                <button class="lg:hidden p-2"><i data-lucide="menu" class="w-6 h-6"></i></button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Section 1: Dynamic Hero Slider -->
+    <section class="relative h-screen w-full overflow-hidden bg-lhu-navy">
+        <div id="hero-slider" class="h-full w-full">
+            <div class="absolute inset-0 hero-parallax" style="background-image: url('https://www.hope.ac.uk/media/homepage/images/Apply_Campaign_Homepage_Banner_181125.jpg');">
+                <div class="slider-overlay absolute inset-0 flex items-center">
+                    <div class="max-w-7xl mx-auto px-6 w-full">
+                        <div class="max-w-3xl space-y-6">
+                            <h1 class="text-white text-6xl md:text-8xl font-extrabold tracking-tight leading-none italic">
+                                Inspired by <span class="text-lhu-red">Hope</span>,<br>Grounded in Excellence.
+                            </h1>
+                            <p class="text-gray-300 text-lg md:text-xl font-light tracking-wide max-w-xl">
+                                Join a community of scholars dedicated to transforming lives through elite academic pursuit in the heart of Liverpool.
+                            </p>
+                            <div class="pt-4 flex gap-4">
+                                <button class="bg-lhu-red text-white px-10 py-4 font-bold uppercase tracking-widest hover:scale-105 transition-transform">Explore Courses</button>
+                                <button class="border border-white text-white px-10 py-4 font-bold uppercase tracking-widest hover:bg-white hover:text-lhu-navy transition-all">Visit Campus</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Scroll Indicator -->
+        <div class="absolute bottom-10 left-1/2 -translate-x-1/2 text-white animate-bounce">
+            <i data-lucide="chevron-down" class="w-8 h-8 opacity-50"></i>
+        </div>
+    </section>
+
+    <!-- Section 2: Study at Hope Grid -->
+    <section class="py-32 bg-white">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="mb-20 text-center space-y-4">
+                <h2 class="text-4xl md:text-5xl font-bold tracking-tight text-lhu-navy uppercase">Future-Proof Your Career</h2>
+                <div class="w-20 h-1 bg-lhu-red mx-auto"></div>
+                <p class="text-gray-500 max-w-2xl mx-auto text-lg">Choose from a diverse range of programs designed to inspire curiosity and foster leadership.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                <!-- Undergraduate -->
+                <div class="card-hover group cursor-pointer relative overflow-hidden bg-gray-50 p-8 rounded-2xl border border-gray-100">
+                    <div class="mb-8 overflow-hidden rounded-xl h-64">
+                        <img src="https://www.hope.ac.uk/media/homepage/images/Find%20Your%20Course_385x314.jpg" alt="Undergrad" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Undergraduate</h3>
+                    <p class="text-gray-600 mb-6 font-light">Start your journey with foundational excellence and specialized honors programs.</p>
+                    <a href="#" class="inline-flex items-center text-lhu-red font-bold group">
+                        Discover Programs <i data-lucide="arrow-right" class="ml-2 w-4 h-4 group-hover:translate-x-2 transition-transform"></i>
+                    </a>
+                </div>
+
+                <!-- Postgraduate -->
+                <div class="card-hover group cursor-pointer relative overflow-hidden bg-gray-50 p-8 rounded-2xl border border-gray-100">
+                    <div class="mb-8 overflow-hidden rounded-xl h-64">
+                        <img src="https://www.hope.ac.uk/media/homepage/images/Postgraduate%20research.jpg" alt="Postgrad" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Postgraduate</h3>
+                    <p class="text-gray-600 mb-6 font-light">Elevate your expertise with taught masters and professional development paths.</p>
+                    <a href="#" class="inline-flex items-center text-lhu-red font-bold group">
+                        Master Your Craft <i data-lucide="arrow-right" class="ml-2 w-4 h-4 group-hover:translate-x-2 transition-transform"></i>
+                    </a>
+                </div>
+
+                <!-- International -->
+                <div class="card-hover group cursor-pointer relative overflow-hidden bg-gray-50 p-8 rounded-2xl border border-gray-100">
+                    <div class="mb-8 overflow-hidden rounded-xl h-64">
+                        <img src="https://www.hope.ac.uk/media/homepage/images/Visit%20Us_385x3143.jpg" alt="International" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700">
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">International</h3>
+                    <p class="text-gray-600 mb-6 font-light">Global perspectives in a historic British city. Welcome to your second home.</p>
+                    <a href="#" class="inline-flex items-center text-lhu-red font-bold group">
+                        Join Our Community <i data-lucide="arrow-right" class="ml-2 w-4 h-4 group-hover:translate-x-2 transition-transform"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 3: About & Apply (Split Layout) -->
+    <section class="grid grid-cols-1 md:grid-cols-2 min-h-[600px]">
+        <div class="bg-gray-100 overflow-hidden relative">
+            <img src="https://www.hope.ac.uk/media/studywithus/undergraduate/images/foundationimages/Creative%20Campus.jpg" alt="Creative Campus" class="w-full h-full object-cover grayscale hover:grayscale-0 transition-all duration-1000">
+            <div class="absolute inset-0 bg-lhu-navy opacity-10"></div>
+        </div>
+        <div class="flex items-center justify-center p-12 md:p-24 bg-white">
+            <div class="max-w-lg space-y-8">
+                <span class="text-lhu-red font-bold tracking-[0.3em] uppercase text-sm block">Established 1844</span>
+                <h2 class="text-5xl font-black text-lhu-navy leading-tight uppercase">Legacy of Innovation</h2>
+                <p class="text-xl text-gray-500 font-light leading-relaxed">
+                    Liverpool Hope has been a beacon of higher education for nearly two centuries. Our Creative Campus and Hope Park estates offer a unique blend of historical grandeur and state-of-the-art research facilities.
+                </p>
+                <button class="bg-lhu-red text-white w-full py-6 text-xl font-black uppercase tracking-widest hover:bg-lhu-navy transition-all duration-500 shadow-2xl">
+                    Apply for 2026 Entry
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 4: News & Insights (Masonry Grid) -->
+    <section class="py-32 bg-gray-50">
+        <div class="max-w-7xl mx-auto px-6">
+            <div class="flex justify-between items-end mb-16">
+                <div class="space-y-4">
+                    <h2 class="text-4xl font-black uppercase tracking-tighter">News & Comments</h2>
+                    <div class="w-16 h-1 bg-lhu-red"></div>
+                </div>
+                <a href="#" class="hidden md:block text-sm font-bold uppercase tracking-widest text-gray-400 hover:text-lhu-red">View All Archive</a>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 items-start">
+                <!-- News Card 1 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500">
+                    <img src="https://www.hope.ac.uk/media/HopeStar-281SPOTLIGHT.jpg" alt="News" class="w-full h-48 object-cover">
+                    <div class="p-8">
+                        <span class="text-xs font-bold text-lhu-red uppercase">Community</span>
+                        <h4 class="text-xl font-bold mt-2 mb-4 leading-snug">Hope Star Awards celebrate outstanding contributions in 2025</h4>
+                        <p class="text-gray-500 text-sm font-light">Recognizing the students and staff who go above and beyond to shape our community...</p>
+                    </div>
+                </div>
+                <!-- News Card 2 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500 mt-12">
+                    <img src="https://www.hope.ac.uk/media/YE%20Winners%203%20spotlight.jpg" alt="News" class="w-full h-64 object-cover">
+                    <div class="p-8">
+                        <span class="text-xs font-bold text-lhu-red uppercase">Excellence</span>
+                        <h4 class="text-xl font-bold mt-2 mb-4 leading-snug">Business School triumphs at the Young Enterprise Finals</h4>
+                        <p class="text-gray-500 text-sm font-light">Our entrepreneurs showcased groundbreaking sustainable solutions in London...</p>
+                    </div>
+                </div>
+                <!-- News Card 3 -->
+                <div class="bg-white rounded-2xl overflow-hidden shadow-sm hover:shadow-xl transition-all duration-500">
+                    <img src="https://www.hope.ac.uk/media/news/images/AI%20spotlight.jpg" alt="News" class="w-full h-48 object-cover">
+                    <div class="p-8">
+                        <span class="text-xs font-bold text-lhu-red uppercase">Research</span>
+                        <h4 class="text-xl font-bold mt-2 mb-4 leading-snug">The societal implications of AI agent swarms</h4>
+                        <p class="text-gray-500 text-sm font-light">Professor James Davies explores the convergence of social media and cognitive AI...</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 5: Research at Hope (Navy Theme) -->
+    <section class="py-32 bg-lhu-navy text-white relative overflow-hidden">
+        <div class="absolute top-0 right-0 w-1/2 h-full opacity-5 pointer-events-none">
+            <svg viewBox="0 0 500 500" class="w-full h-full"><circle cx="500" cy="0" r="400" stroke="white" stroke-width="1" fill="none"/></svg>
+        </div>
+        <div class="max-w-7xl mx-auto px-6 relative z-10">
+            <div class="grid-12 items-center">
+                <div class="col-span-12 lg:col-span-6 space-y-8">
+                    <h2 class="text-5xl font-black uppercase italic">Research Impact</h2>
+                    <p class="text-gray-400 text-xl font-light leading-relaxed">
+                        97% of our research is recognized as world-leading or internationally excellent. We tackle the global challenges of today with the intellectual rigor of tomorrow.
+                    </p>
+                    <div class="grid grid-cols-2 gap-8">
+                        <div class="space-y-4">
+                            <i data-lucide="globe" class="w-10 h-10 text-lhu-red"></i>
+                            <h5 class="text-3xl font-bold tracking-tighter">Global Top 5%</h5>
+                            <p class="text-sm text-gray-500 uppercase font-bold tracking-widest">University Impact Rankings</p>
+                        </div>
+                        <div class="space-y-4">
+                            <i data-lucide="award" class="w-10 h-10 text-lhu-red"></i>
+                            <h5 class="text-3xl font-bold tracking-tighter">Gold Standard</h5>
+                            <p class="text-sm text-gray-500 uppercase font-bold tracking-widest">Research Excellence (REF)</p>
+                        </div>
+                    </div>
+                    <button class="border-b-2 border-lhu-red pb-2 text-sm font-black uppercase tracking-widest hover:text-lhu-red transition-all">Explore the PVC Research Office</button>
+                </div>
+                <div class="hidden lg:col-span-6 lg:block pl-12">
+                    <img src="https://www.hope.ac.uk/media/homepage/images/HCA%20Spotlight-1.jpg" alt="Research" class="rounded-3xl shadow-2xl border border-white/10">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 6: Wall of Hope (Testimonials) -->
+    <section class="py-32 bg-white overflow-hidden">
+        <div class="max-w-7xl mx-auto px-6 mb-20">
+            <h2 class="text-4xl font-black text-center uppercase tracking-widest">The Wall of Hope</h2>
+        </div>
+        <div class="flex space-x-8 animate-scroll hover:pause px-6">
+            <!-- Manual Carousel Items -->
+            <div class="min-w-[400px] bg-gray-50 p-10 rounded-3xl space-y-6 italic">
+                <div class="flex items-center gap-4">
+                    <div class="w-16 h-16 rounded-full bg-lhu-red/10 flex items-center justify-center"><i data-lucide="user" class="text-lhu-red"></i></div>
+                    <div>
+                        <p class="font-bold text-lhu-navy not-italic">Sarah Jenkins</p>
+                        <p class="text-xs text-gray-400 not-italic uppercase font-bold">MA International Relations</p>
+                    </div>
+                </div>
+                <p class="text-lg text-lhu-navy font-serif leading-relaxed">"Hope provided more than just an education; it provided a community that challenged my worldview every single day."</p>
+            </div>
+            <div class="min-w-[400px] bg-gray-50 p-10 rounded-3xl space-y-6 italic">
+                <div class="flex items-center gap-4">
+                    <div class="w-16 h-16 rounded-full bg-lhu-red/10 flex items-center justify-center"><i data-lucide="user" class="text-lhu-red"></i></div>
+                    <div>
+                        <p class="font-bold text-lhu-navy not-italic">David Okoro</p>
+                        <p class="text-xs text-gray-400 not-italic uppercase font-bold">BSc Computer Science</p>
+                    </div>
+                </div>
+                <p class="text-lg text-lhu-navy font-serif leading-relaxed">"The blend of historic campus life with cutting-edge tech labs at Hope Park was exactly what I needed to launch my career."</p>
+            </div>
+             <div class="min-w-[400px] bg-gray-50 p-10 rounded-3xl space-y-6 italic">
+                <div class="flex items-center gap-4">
+                    <div class="w-16 h-16 rounded-full bg-lhu-red/10 flex items-center justify-center"><i data-lucide="user" class="text-lhu-red"></i></div>
+                    <div>
+                        <p class="font-bold text-lhu-navy not-italic">Emily Chen</p>
+                        <p class="text-xs text-gray-400 not-italic uppercase font-bold">PhD Education</p>
+                    </div>
+                </div>
+                <p class="text-lg text-lhu-navy font-serif leading-relaxed">"Research here is truly collaborative. The faculty mentorship is unparalleled in the UK higher education sector."</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 7: Life at Hope Gallery (Non-Linear Collage) -->
+    <section class="py-32 bg-white px-6">
+        <div class="max-w-7xl mx-auto grid grid-cols-12 grid-rows-2 gap-4 h-[800px]">
+            <div class="col-span-8 row-span-1 overflow-hidden rounded-2xl group relative">
+                <img src="https://www.hope.ac.uk/media/studywithus/undergraduate/images/foundationimages/Creative%20Campus.jpg" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" alt="Creative Campus">
+                <div class="absolute bottom-6 left-6 text-white font-bold text-2xl uppercase tracking-widest drop-shadow-lg">Cornerstone Building</div>
+            </div>
+            <div class="col-span-4 row-span-1 overflow-hidden rounded-2xl group relative">
+                <img src="https://www.hope.ac.uk/media/homepage/images/Visit%20Us_385x3143.jpg" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" alt="Student Life">
+            </div>
+            <div class="col-span-4 row-span-1 overflow-hidden rounded-2xl group relative">
+                <img src="https://www.hope.ac.uk/media/grad%2026.png" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" alt="Graduation">
+            </div>
+            <div class="col-span-8 row-span-1 overflow-hidden rounded-2xl group relative">
+                <img src="https://www.hope.ac.uk/media/Bulletin_Images_0710242.jpg" class="w-full h-full object-cover transition-transform duration-1000 group-hover:scale-105" alt="Architecture">
+                 <div class="absolute bottom-6 left-6 text-white font-bold text-2xl uppercase tracking-widest drop-shadow-lg">Hope Park Architecture</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 8: FAQ (Accordion) -->
+    <section class="py-32 bg-gray-50">
+        <div class="max-w-3xl mx-auto px-6">
+            <h2 class="text-4xl font-black mb-16 text-center uppercase tracking-tighter">Your Questions Answered</h2>
+            <div class="space-y-0 border-t border-gray-200">
+                <div class="border-b border-gray-200 py-6 cursor-pointer group" onclick="toggleFaq(this)">
+                    <div class="flex justify-between items-center">
+                        <h4 class="text-lg font-bold text-lhu-navy group-hover:text-lhu-red transition-colors">How do I apply for undergraduate courses?</h4>
+                        <span class="text-2xl text-lhu-red font-light">+</span>
+                    </div>
+                    <div class="max-h-0 overflow-hidden transition-all duration-300 faq-content">
+                        <p class="pt-4 text-gray-500 font-light">All full-time undergraduate applications must be made via UCAS. Use the code L24 for Liverpool Hope University.</p>
+                    </div>
+                </div>
+                <div class="border-b border-gray-200 py-6 cursor-pointer group" onclick="toggleFaq(this)">
+                    <div class="flex justify-between items-center">
+                        <h4 class="text-lg font-bold text-lhu-navy group-hover:text-lhu-red transition-colors">Is on-campus accommodation guaranteed?</h4>
+                        <span class="text-2xl text-lhu-red font-light">+</span>
+                    </div>
+                    <div class="max-h-0 overflow-hidden transition-all duration-300 faq-content">
+                        <p class="pt-4 text-gray-500 font-light">We guarantee campus housing for all first-year undergraduate students who firm their offer by the UCAS deadline.</p>
+                    </div>
+                </div>
+                <div class="border-b border-gray-200 py-6 cursor-pointer group" onclick="toggleFaq(this)">
+                    <div class="flex justify-between items-center">
+                        <h4 class="text-lg font-bold text-lhu-navy group-hover:text-lhu-red transition-colors">What scholarships are available for 2026?</h4>
+                        <span class="text-2xl text-lhu-red font-light">+</span>
+                    </div>
+                    <div class="max-h-0 overflow-hidden transition-all duration-300 faq-content">
+                        <p class="pt-4 text-gray-500 font-light">From the Access to Hope scholarship to International Merit awards, we offer over £1M in annual student support.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section 9: Final CTA -->
+    <section class="bg-lhu-red py-24 text-center">
+        <div class="max-w-4xl mx-auto px-6 space-y-8">
+            <h2 class="text-5xl md:text-7xl font-black text-white uppercase italic tracking-tighter">Start Your Journey Today</h2>
+            <p class="text-white/80 text-xl font-light">Applications for the next academic year are now open. Be part of our story.</p>
+            <button class="bg-white text-lhu-red px-12 py-5 rounded-full font-black uppercase tracking-widest hover:scale-110 hover:shadow-2xl transition-all">
+                Request a Prospectus
+            </button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-lhu-navy text-white pt-24 pb-12">
+        <div class="max-w-7xl mx-auto px-6 grid-12">
+            <div class="col-span-12 lg:col-span-3 space-y-6">
+                <img src="https://www.hope.ac.uk/media/styleassets/images/hope_logo_130h.png" alt="LHU Logo" class="h-16 brightness-0 invert">
+                <p class="text-gray-400 text-sm leading-relaxed">
+                    Inspired by Hope, Grounded in Excellence.<br>
+                    Liverpool Hope University is a company limited by guarantee, registered in England.
+                </p>
+                <div class="flex gap-4">
+                    <a href="#" class="p-2 border border-white/10 rounded-full hover:bg-lhu-red transition-colors"><i data-lucide="facebook" class="w-4 h-4"></i></a>
+                    <a href="#" class="p-2 border border-white/10 rounded-full hover:bg-lhu-red transition-colors"><i data-lucide="twitter" class="w-4 h-4"></i></a>
+                    <a href="#" class="p-2 border border-white/10 rounded-full hover:bg-lhu-red transition-colors"><i data-lucide="instagram" class="w-4 h-4"></i></a>
+                    <a href="#" class="p-2 border border-white/10 rounded-full hover:bg-lhu-red transition-colors"><i data-lucide="linkedin" class="w-4 h-4"></i></a>
+                </div>
+            </div>
+            <div class="col-span-6 lg:col-span-3">
+                <h6 class="font-bold uppercase tracking-widest text-lhu-red mb-8">Quick Links</h6>
+                <ul class="space-y-4 text-sm text-gray-400">
+                    <li><a href="#" class="hover:text-white transition-colors">Course Finder</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Applicant Hub</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Job Opportunities</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Alumni Network</a></li>
+                    <li><a href="#" class="hover:text-white transition-colors">Library Services</a></li>
+                </ul>
+            </div>
+            <div class="col-span-6 lg:col-span-3">
+                <h6 class="font-bold uppercase tracking-widest text-lhu-red mb-8">Campus Locations</h6>
+                <div class="space-y-6 text-sm text-gray-400">
+                    <div>
+                        <p class="font-bold text-white mb-1">Hope Park</p>
+                        <p>Liverpool, L16 9JD</p>
+                    </div>
+                    <div>
+                        <p class="font-bold text-white mb-1">Creative Campus</p>
+                        <p>Liverpool, L6 1HP</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-span-12 lg:col-span-3">
+                <h6 class="font-bold uppercase tracking-widest text-lhu-red mb-8">Contact Enquiries</h6>
+                <p class="text-sm text-gray-400 mb-4">International & Domestic Students:</p>
+                <a href="tel:+441512913000" class="text-2xl font-bold block mb-2 text-white">+44 (0)151 291 3000</a>
+                <a href="mailto:enquiry@hope.ac.uk" class="text-lhu-red border-b border-lhu-red pb-1 font-bold">enquiry@hope.ac.uk</a>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto px-6 mt-24 pt-8 border-t border-white/5 flex flex-col md:flex-row justify-between text-[10px] uppercase tracking-[0.2em] text-gray-600 font-bold">
+            <p>© 2026 Liverpool Hope University. All Rights Reserved.</p>
+            <div class="flex gap-6 mt-4 md:mt-0">
+                <a href="#">Privacy Policy</a>
+                <a href="#">Sitemap</a>
+                <a href="#">Terms</a>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // FAQ Toggle Logic
+        function toggleFaq(element) {
+            const content = element.querySelector('.faq-content');
+            const icon = element.querySelector('span');
+            
+            if (content.style.maxHeight && content.style.maxHeight !== "0px") {
+                content.style.maxHeight = "0px";
+                icon.textContent = "+";
+                icon.style.transform = "rotate(0deg)";
+            } else {
+                // Close others
+                document.querySelectorAll('.faq-content').forEach(c => c.style.maxHeight = "0px");
+                document.querySelectorAll('.group span').forEach(s => s.textContent = "+");
+                
+                content.style.maxHeight = content.scrollHeight + "px";
+                icon.textContent = "-";
+                icon.style.transform = "rotate(180deg)";
+            }
+        }
+
+        // Scroll Reveal Logic
+        window.addEventListener('scroll', () => {
+            const reveals = document.querySelectorAll('.animate-reveal');
+            reveals.forEach(reveal => {
+                const windowHeight = window.innerHeight;
+                const revealTop = reveal.getBoundingClientRect().top;
+                const revealPoint = 150;
+                if (revealTop < windowHeight - revealPoint) {
+                    reveal.classList.add('reveal-visible');
+                }
+            });
+
+            // Sticky Header Logic
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                nav.classList.add('py-2', 'shadow-lg');
+                nav.classList.remove('h-20');
+            } else {
+                nav.classList.remove('py-2', 'shadow-lg');
+                nav.classList.add('h-20');
+            }
+        });
+    </script>
+</body>
+</html>
